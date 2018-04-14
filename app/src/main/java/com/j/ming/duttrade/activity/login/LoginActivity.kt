@@ -36,6 +36,7 @@ class LoginActivity : MVPBaseActivity<LoginActivityPresenter>(),
 
     private fun initView() {
         setSupportActionBar(toolBar)
+        imageView.updateDrawableTinColor(R.color.colorPrimary)
         toolBar.setTitle(R.string.login)
         toolBar.setNavigationOnClickListener {
             onBackPressed()

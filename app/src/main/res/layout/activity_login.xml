@@ -14,7 +14,7 @@
         android:background="@color/light_grey"
         tools:context=".activity.login.LoginActivity">
 
-        <ImageView
+        <com.j.ming.duttrade.views.TinImageView
             android:id="@+id/imageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -35,11 +35,10 @@
             style="@style/login_et_style"
             android:drawableEnd="@drawable/delete"
             android:drawableLeft="@drawable/user"
-            android:drawablePadding="10dp"
             android:drawableRight="@drawable/delete"
             android:drawableStart="@drawable/user"
             android:hint="@string/username_hint"
-            android:padding="5dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -49,12 +48,10 @@
             style="@style/login_et_style"
             android:drawableEnd="@drawable/delete"
             android:drawableLeft="@drawable/password"
-            android:drawablePadding="10dp"
             android:drawableRight="@drawable/delete"
             android:drawableStart="@drawable/password"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etUsername" />

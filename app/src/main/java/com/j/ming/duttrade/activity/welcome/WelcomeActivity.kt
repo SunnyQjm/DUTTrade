@@ -47,6 +47,7 @@ class WelcomeActivity : MVPBaseActivity<WelcomeActivityPresenter>(),
             window.navigationBarColor = Color.TRANSPARENT
         }
 
+        imageView.updateDrawableTinColor(R.color.colorPrimary)
         welcome_layout.postDelayed({
             if(BmobUser.getCurrentUser() == null){      //没有登录则跳到登录界面
                 jumpTo(LoginActivity::class.java)

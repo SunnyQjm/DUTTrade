@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".activity.welcome.WelcomeActivity">
 
-    <ImageView
+    <com.j.ming.duttrade.views.TinImageView
+        android:id="@+id/imageView"
         android:layout_gravity="center"
         android:src="@drawable/icon"
         android:layout_width="200dp"

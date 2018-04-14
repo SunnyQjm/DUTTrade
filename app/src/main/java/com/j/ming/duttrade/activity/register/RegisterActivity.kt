@@ -91,6 +91,7 @@ class RegisterActivity : MVPBaseActivity<RegisterActivityPresenter>(),
                 }
             }
         }
+        imageView.updateDrawableTinColor(R.color.colorPrimary)
     }
 
     private var isShowVerification = true
