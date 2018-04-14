@@ -2,17 +2,17 @@ package com.j.ming.duttrade.views
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v7.widget.AppCompatEditText
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
 
 class ClearAbleEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null,
                                                   defStyleAttr: Int = android.R.attr.editTextStyle)
-    : AppCompatEditText(context, attrs, defStyleAttr) {
+    : TinEditText(context, attrs, defStyleAttr) {
 
-    private val rightDrawable: Drawable? = compoundDrawables[2]
+    private val rightDrawable: Drawable? = mDrawables[2]
 
     init {
         rightDrawable?.setBounds(0, 0,
@@ -37,13 +37,18 @@ class ClearAbleEditText @JvmOverloads constructor(context: Context, attrs: Attri
             }
 
         })
-        setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus || text.isEmpty())
-                changeDrawables(right = null)
-            else
-                changeDrawables(right = rightDrawable)
-        }
+//        setOnFocusChangeListener { _, hasFocus ->
+//
+//        }
 
+    }
+
+    override fun onFocusChange(v: View?, hasFocus: Boolean) {
+        super.onFocusChange(v, hasFocus)
+        if (!hasFocus || text.isEmpty())
+            changeDrawables(right = null)
+        else
+            changeDrawables(right = rightDrawable)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -60,8 +65,8 @@ class ClearAbleEditText @JvmOverloads constructor(context: Context, attrs: Attri
         return super.onTouchEvent(event)
     }
 
-    private fun changeDrawables(left: Drawable? = compoundDrawables[0], top: Drawable? = compoundDrawables[1], right: Drawable? = compoundDrawables[2],
-                                bottom: Drawable? = compoundDrawables[3]) {
+    private fun changeDrawables(left: Drawable? = mDrawables[0], top: Drawable? = mDrawables[1], right: Drawable? = mDrawables[2],
+                                bottom: Drawable? = mDrawables[3]) {
         setCompoundDrawables(left, top, right, bottom)
     }
 }
