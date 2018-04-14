@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">DUTTrade</string>
+    <string name="username_hint">用户名/手机号/邮箱</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="forget_pwd">忘记密码</string>
+    <string name="new_user_register">新用户注册></string>
+    <string name="register">注册</string>
+    <string name="certify_code">验证码</string>
+    <string name="click_send">点击发送</string>
+    <string name="send_code_after_several_second">%1$d s</string>
+    <string name="send_verification_code_success">发送成功</string>
+    <string name="phone_number_not_allow_empty">用户名不能为空</string>
+    <string name="please_input_correct_phone_numbet">请输入正确的手机号</string>
+    <string name="phone_verification">手机验证</string>
+    <string name="email_verification">邮箱验证</string>
+    <string name="none_verification">无验证</string>
+    <string name="please_input_correct_email">请输入正确的邮箱账号</string>
+    <string name="please_complete_info">请将信息填写完整</string>
+</resources>
