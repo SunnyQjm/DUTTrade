@@ -4,17 +4,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import cn.bmob.v3.BmobUser
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.MVPBaseActivity
 import com.j.ming.duttrade.activity.index.MainActivity
-import com.j.ming.duttrade.activity.login.LoginActivity
-import com.j.ming.duttrade.extensions.TAG
 import com.j.ming.duttrade.extensions.jumpTo
-import com.j.ming.duttrade.model.data.UserInfo
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : MVPBaseActivity<WelcomeActivityPresenter>(),
@@ -49,12 +44,14 @@ class WelcomeActivity : MVPBaseActivity<WelcomeActivityPresenter>(),
 
         imageView.updateDrawableTinColor(R.color.colorPrimary)
         welcome_layout.postDelayed({
-            if(BmobUser.getCurrentUser() == null){      //没有登录则跳到登录界面
-                jumpTo(LoginActivity::class.java)
-            } else {
-                Log.d(TAG(), "isMyBean: ${BmobUser.getCurrentUser() is UserInfo}")
-                jumpTo(MainActivity::class.java)
-            }
+            jumpTo(MainActivity::class.java)
+
+//            if(BmobUser.getCurrentUser() == null){      //没有登录则跳到登录界面
+//                jumpTo(LoginActivity::class.java)
+//            } else {
+//                Log.d(TAG(), "isMyBean: ${BmobUser.getCurrentUser() is UserInfo}")
+//                jumpTo(MainActivity::class.java)
+//            }
             finish()
         }, 1000)
     }

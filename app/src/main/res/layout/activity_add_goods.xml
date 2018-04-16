@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_grey"
+        android:isScrollContainer="true"
+        android:orientation="vertical"
+        tools:context="com.example.administrator.readet.Acrivity.AddBook.AddBookActivity">
+
+        <include layout="@layout/bar_item" />
+
+        <include layout="@layout/divider_line" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/line_gray" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/add_book_item_height1"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:hint="名称"
+            android:paddingEnd="@dimen/add_book_item_margin_horizontal"
+            android:paddingLeft="@dimen/add_book_item_margin_horizontal"
+            android:paddingRight="@dimen/add_book_item_margin_horizontal"
+            android:paddingStart="@dimen/add_book_item_margin_horizontal"
+            android:textColor="@color/text_gray"
+            android:textColorHint="@color/line_gray"
+            android:textSize="16sp" />
+
+        <include layout="@layout/divider_line" />
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="添加描述"
+            android:minHeight="120dp"
+            android:padding="20dp"
+            android:textColor="@color/text_gray"
+            android:textColorHint="@color/line_gray" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grid_add_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:numColumns="4"
+            android:padding="2dp" />
+
+        <include layout="@layout/divider_line" />
+
+        <com.j.ming.duttrade.views.LineMenuItem
+            style="@style/mine_item_style"
+            app:left_margin="@dimen/mine_item_margin_left"
+            app:menu_title="价格"
+            app:menu_value="100.0"
+            app:right_margin="@dimen/mine_item_right_margin" />
+
+        <include layout="@layout/divider_line" />
+
+        <com.j.ming.duttrade.views.LineMenuItem
+            style="@style/mine_item_style"
+            app:left_margin="@dimen/mine_item_margin_left"
+            app:menu_title="库存"
+            app:menu_value="100.0"
+            app:right_margin="@dimen/mine_item_right_margin" />
+
+        <include layout="@layout/divider_line" />
+
+        <com.j.ming.duttrade.views.LineMenuItem
+            style="@style/mine_item_style"
+            app:left_margin="@dimen/mine_item_margin_left"
+            app:menu_title="手机号"
+            app:menu_value="100.0"
+            app:right_margin="@dimen/mine_item_right_margin" />
+
+        <include layout="@layout/divider_line" />
+
+        <com.j.ming.duttrade.views.LineMenuItem
+            style="@style/mine_item_style"
+            app:left_margin="@dimen/mine_item_margin_left"
+            app:menu_title="QQ"
+            app:menu_value="100.0"
+            app:right_margin="@dimen/mine_item_right_margin" />
+
+        <include layout="@layout/divider_line" />
+
+        <com.j.ming.duttrade.views.LineMenuItem
+            style="@style/mine_item_style"
+            app:left_margin="@dimen/mine_item_margin_left"
+            app:menu_title="微信"
+            app:menu_value="100.0"
+            app:right_margin="@dimen/mine_item_right_margin" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

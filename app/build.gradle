@@ -57,6 +57,7 @@ dependencies {
 
     //easybar
     implementation 'com.github.SunnyQjm:EasyBar:v1.1.0'
+    implementation 'com.github.SunnyQjm:ArcMenu:v1.1.1'
 
     //BRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'

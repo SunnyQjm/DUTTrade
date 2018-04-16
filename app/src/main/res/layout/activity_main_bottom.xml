@@ -11,6 +11,7 @@
         android:layout_weight="1"
         android:layout_width="0dp"
         android:padding="10dp"
+        android:background="?selectableItemBackground"
         android:layout_height="wrap_content" />
 
     <com.j.ming.duttrade.views.TinImageView
@@ -19,5 +20,6 @@
         android:layout_weight="1"
         android:padding="10dp"
         android:layout_width="0dp"
+        android:background="?selectableItemBackground"
         android:layout_height="wrap_content" />
 </LinearLayout>

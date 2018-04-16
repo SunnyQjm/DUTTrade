@@ -113,9 +113,10 @@
             style="@style/mine_item_style"
             app:is_left_icon_visible="true"
             app:left_margin="@dimen/mine_item_margin_left"
+            app:right_margin="@dimen/mine_item_right_margin"
             app:left_resource="@drawable/icon_mine_file_manager"
             app:menu_title="捐赠"
-            app:right_margin="@dimen/mine_item_right_margin" />
+            />
 
         <View xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -124,6 +125,7 @@
             android:background="@color/line_gray" />
 
         <TextView
+            android:id="@+id/tvExist"
             android:textSize="16sp"
             android:gravity="center"
             android:background="@color/white"

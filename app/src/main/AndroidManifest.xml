@@ -32,13 +32,10 @@
         </activity>
         <activity
             android:name=".activity.index.MainActivity"
-            android:launchMode="singleTask"
-            >
-
-        </activity>
+            android:launchMode="singleTask" />
         <activity android:name=".activity.login.LoginActivity" />
         <activity android:name=".activity.register.RegisterActivity" />
-
+        <activity android:name=".activity.addgoods.AddGoodsActivity" />
     </application>
 
 </manifest>

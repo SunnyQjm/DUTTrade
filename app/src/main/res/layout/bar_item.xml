@@ -4,14 +4,28 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--<com.j.ming.easybar2.EasyBar-->
+        <!--android:id="@+id/easyBar"-->
+        <!--app:title_color="@color/white"-->
+        <!--app:title_size="18sp"-->
+        <!--app:title="交易平台"-->
+        <!--app:left_icon="@string/back"-->
+        <!--app:left_text="@string/back"-->
+        <!--app:right_text="@string/sure"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize" />-->
+
     <com.j.ming.easybar2.EasyBar
+        android:background="@color/colorPrimary"
         android:id="@+id/easyBar"
-        app:title_color="@color/white"
-        app:title_size="18sp"
-        app:title="交易平台"
+        app:title="优云"
+        app:icon_size="56dp"
+        app:icon_margin="16dp"
+        app:title_size="17sp"
         app:left_text="@string/back"
         app:right_text="@string/sure"
-        android:background="@color/colorPrimary"
+        app:title_color="#fff"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
+        android:layout_height="56dp"/>
 </LinearLayout>

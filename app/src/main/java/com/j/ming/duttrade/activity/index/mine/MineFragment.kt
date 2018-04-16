@@ -1,10 +1,15 @@
 package com.j.ming.duttrade.activity.index.mine
 
 import android.os.Bundle
+import cn.bmob.v3.BmobUser
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.MVPBaseFragment
+import com.j.ming.duttrade.activity.login.LoginActivity
+import com.j.ming.duttrade.extensions.jumpTo
+import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.bar_item.*
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 class MineFragment: MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContract.View{
 
@@ -22,7 +27,11 @@ class MineFragment: MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContra
     override fun getRes(): Int = R.layout.fragment_mine
 
     override fun initView() {
-        easyBar.init(titleRes = R.string.person_center)
+        easyBar.init(titleRes = R.string.person_center, mode = EasyBar.Mode.NONE)
+        tvExist.setOnClickListener {
+            BmobUser.logOut()
+            jumpTo(LoginActivity::class.java)
+        }
     }
 
     override fun initialLoadData() {
