@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.j.ming.easybar2.EasyBar
+        android:id="@+id/easyBar"
+        app:title_color="@color/white"
+        app:title_size="18sp"
+        app:title="交易平台"
+        app:left_text="@string/back"
+        app:right_text="@string/sure"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+</LinearLayout>

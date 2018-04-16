@@ -9,6 +9,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <include layout="@layout/bar_item" />
+
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_avatar"
             android:layout_width="match_parent"
@@ -75,16 +77,58 @@
             android:background="@color/line_gray" />
 
         <com.j.ming.duttrade.views.LineMenuItem
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/mine_item_height"
-            android:background="@drawable/ripple_bg_white"
+            style="@style/mine_item_style"
+            app:is_left_icon_visible="true"
+            app:left_margin="@dimen/mine_item_margin_left"
+            app:left_resource="@drawable/icon_mine_feedback"
+            app:menu_title="交易记录"
+            app:right_margin="@dimen/mine_item_right_margin" />
+
+        <include layout="@layout/divider_line" />
+
+        <com.j.ming.duttrade.views.LineMenuItem
+            style="@style/mine_item_style"
             app:is_left_icon_visible="true"
             app:left_margin="@dimen/mine_item_margin_left"
             app:left_resource="@drawable/icon_mine_collection"
-            app:menu_title="我的收藏"
-            app:right_margin="@dimen/mine_item_right_margin"
-            >
+            app:menu_title="我的商品"
+            app:right_margin="@dimen/mine_item_right_margin" />
 
-        </com.j.ming.duttrade.views.LineMenuItem>
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/line_gray" />
+
+        <com.j.ming.duttrade.views.LineMenuItem
+            app:menu_title="分享"
+            style="@style/mine_item_style"
+            app:is_left_icon_visible="true"
+            app:left_margin="@dimen/mine_item_margin_left"
+            app:left_resource="@drawable/icon_mine_share" />
+
+        <include layout="@layout/divider_line"/>
+
+        <com.j.ming.duttrade.views.LineMenuItem
+            style="@style/mine_item_style"
+            app:is_left_icon_visible="true"
+            app:left_margin="@dimen/mine_item_margin_left"
+            app:left_resource="@drawable/icon_mine_file_manager"
+            app:menu_title="捐赠"
+            app:right_margin="@dimen/mine_item_right_margin" />
+
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/line_gray" />
+
+        <TextView
+            android:textSize="16sp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:text="@string/exist"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mine_item_height" />
     </LinearLayout>
 </ScrollView>

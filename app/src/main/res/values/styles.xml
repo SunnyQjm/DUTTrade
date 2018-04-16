@@ -21,4 +21,11 @@
         <item name="android:padding">5dp</item>
     </style>
 
+    <style name="mine_item_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/mine_item_height</item>
+        <item name="android:background">@drawable/ripple_bg_white</item>
+
+    </style>
+
 </resources>

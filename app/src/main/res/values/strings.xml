@@ -17,4 +17,7 @@
     <string name="none_verification">无验证</string>
     <string name="please_input_correct_email">请输入正确的邮箱账号</string>
     <string name="please_complete_info">请将信息填写完整</string>
+    <string name="trade_center">交易中心</string>
+    <string name="person_center">个人中心</string>
+    <string name="exist">退出</string>
 </resources>
