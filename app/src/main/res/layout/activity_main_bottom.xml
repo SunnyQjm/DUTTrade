@@ -5,14 +5,16 @@
     android:layout_height="wrap_content">
 
 
-    <ImageView
+    <com.j.ming.duttrade.views.TinImageView
+        android:id="@+id/imgMarket"
         android:src="@drawable/icon_market"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:padding="10dp"
         android:layout_height="wrap_content" />
 
-    <ImageView
+    <com.j.ming.duttrade.views.TinImageView
+        android:id="@+id/imgMine"
         android:src="@drawable/icon_mine"
         android:layout_weight="1"
         android:padding="10dp"

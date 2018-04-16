@@ -4,6 +4,7 @@ import android.app.Application
 import cn.bmob.v3.Bmob
 
 class App: Application(){
+
     override fun onCreate() {
         super.onCreate()
         //第一：默认初始化
