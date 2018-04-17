@@ -24,6 +24,10 @@ class MineFragment: MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContra
     override fun onCreatePresenter(): MineFragmentPresenter =
             MineFragmentPresenter(this)
 
+    override fun onResume() {
+        super.onResume()
+        initialLoadData()
+    }
     override fun getRes(): Int = R.layout.fragment_mine
 
     override fun initView() {
@@ -32,9 +36,18 @@ class MineFragment: MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContra
             BmobUser.logOut()
             jumpTo(LoginActivity::class.java)
         }
+
+        cl_avatar.setOnClickListener {
+            if(BmobUser.getCurrentUser() == null){
+                jumpTo(LoginActivity::class.java)
+            }
+        }
     }
 
     override fun initialLoadData() {
+        BmobUser.getCurrentUser()?.let {
+            tvName.text = it.username
+        } ?: tvName.setText(R.string.click_me_login)
     }
 
 }

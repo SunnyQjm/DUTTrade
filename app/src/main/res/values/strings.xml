@@ -23,6 +23,9 @@
     <string name="add_goods">添加商品</string>
     <string name="save">保存</string>
     <string name="please_login_first">请先登录</string>
+    <string name="click_me_login">点我登录</string>
+    <string name="good_name">名称</string>
+    <string name="add_description">添加描述</string>
 
     <style name="price">价格</style>
 </resources>

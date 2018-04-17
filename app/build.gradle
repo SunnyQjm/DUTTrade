@@ -59,6 +59,10 @@ dependencies {
     implementation 'com.github.SunnyQjm:EasyBar:v1.1.0'
     implementation 'com.github.SunnyQjm:ArcMenu:v1.1.1'
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
     //BRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
 
