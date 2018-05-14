@@ -8,6 +8,7 @@
     <color name="white">#fff</color>
     <color name="transparent">#00ffffff</color>
     <color name="text_gray">#333333</color>
+    <color name="black">#000</color>
 
     <color name="line_gray">#dddddd</color>
 

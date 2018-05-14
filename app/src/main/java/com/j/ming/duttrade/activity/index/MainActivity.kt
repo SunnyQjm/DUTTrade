@@ -4,8 +4,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
+import android.view.MotionEvent
 import android.view.View
-import cn.bmob.v3.BmobUser
 import com.j.ming.arcmenu2.ArcMenu
 import com.j.ming.arcmenu2.FloatingButton
 import com.j.ming.duttrade.R
@@ -17,11 +17,12 @@ import com.j.ming.duttrade.activity.index.mine.MineFragment
 import com.j.ming.duttrade.extensions.jumpTo
 import com.j.ming.duttrade.extensions.scaleXY
 import com.j.ming.duttrade.extensions.toast
+import com.j.ming.duttrade.model.manager.DutTradeUserManager
 import com.j.ming.duttrade.utils.DensityUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_bottom.*
 
-class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContract.View, DUTTradeFragment.OnFragmentInteractionListener{
+class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContract.View, DUTTradeFragment.OnFragmentInteractionListener {
     override fun onFragmentInteraction(uri: Uri?) {
 
     }
@@ -32,6 +33,7 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
     private val fragmentList = mutableListOf<Fragment>()
     private lateinit var mainAdapter: MainAdapter;
     private lateinit var fab: ArcMenu
+
     companion object {
         const val MAIN_BOTTOM_MARKET = 0
         const val MAIN_BOTTOM_MINE = 1
@@ -56,7 +58,7 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                when(position){
+                when (position) {
                     MAIN_BOTTOM_MARKET -> {
                         fab.alpha = 1 - positionOffset
                     }
@@ -68,6 +70,7 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
             }
 
         })
+
         imgMarket.updateDrawableTinColor(R.color.colorPrimary)
         imgMarket.setOnClickListener {
             select(MAIN_BOTTOM_MARKET)
@@ -77,8 +80,8 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
             select(MAIN_BOTTOM_MINE)
         }
 
-
         initFab()
+
     }
 
     private fun initFab() {
@@ -101,27 +104,67 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
         fab.startAngle = -90
         fab.endAngle = 0
 
-        fab.setOnClickListener {
-            BmobUser.getCurrentUser()?.let {
-                jumpTo(AddGoodsActivity::class.java)
-            } ?: toast(R.string.please_login_first)
-        }
-//子菜单弧形展开的半径
+        //子菜单弧形展开的半径
         fab.radius = DensityUtil.dip2px(this, 100f)
         //四个参数分别是子菜单的大小，内边距，背景资源，和图标资源
-//        fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
-//                resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
-//                contentRes = R.mipmap.ic_launcher)
-//        fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
-//                resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
-//                contentRes = R.mipmap.ic_launcher)
-//        fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
-//                resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
-//                contentRes = R.mipmap.ic_launcher)
+        fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
+                resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
+                contentRes = R.mipmap.ic_launcher)
+        fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
+                resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
+                contentRes = R.mipmap.ic_launcher)
+        fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
+                resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
+                contentRes = R.mipmap.ic_launcher)
+        fab.onArcMenuItemClickListener = object : ArcMenu.OnArcMenuItemClickListener {
+            override fun onClick(position: Int, v: View?) {
+                fab.close()
+                when (position) {
+                    0 -> {
+                        if (DutTradeUserManager.isLogin())
+                            jumpTo(AddGoodsActivity::class.java)
+                        else
+                            toast(R.string.please_login_first)
+                    }
+                    1 -> {  //test add commodity
+//                        BmobUser.getCurrentUser(UserInfo::class.java)
+//                                ?.let { user->
+//                                    val commodity = Commodity("test title", "It's really a good thing", null,
+//                                            100f, 1f, "1250422644", "18340857280", "qjm253@gmail.com", user)
+//                                    commodity.save(object : SaveListener<String>() {
+//                                        override fun done(p0: String?, p1: BmobException?) {
+//                                            if (p1 == null) {
+//                                                Log.i("bmob", "保存成功")
+//                                                val comment = Comment("lalkla", user, commodity)
+//                                                comment.save(object : SaveListener<String>(){
+//                                                    override fun done(p0: String?, p1: BmobException?) {
+//                                                        if(p1 == null)
+//                                                            Log.i("bmob", "评论保存成功")
+//                                                        else
+//                                                            Log.i("bmob", "评论保存失败：" + p1.message)
+//                                                    }
+//
+//                                                })
+//                                            } else {
+//                                                Log.i("bmob", "保存失败：" + p1.message)
+//                                            }
+//                                        }
+//                                    })
+//                                }
+                    }
+                    2 -> {      //test add comment
+
+                    }
+                }
+            }
+
+        }
     }
 
     private fun select(position: Int) {
-        when(position){
+        if (fab.isOpen())
+            fab.close()
+        when (position) {
             MAIN_BOTTOM_MARKET -> {
                 imgMarket.scaleXY(1f, 1.2f, 1f)
                 imgMarket.updateDrawableTinColor(R.color.colorPrimary)
@@ -138,5 +181,23 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
                 fab.alpha = 1f
             }
         }
+    }
+
+    /**
+     * 重写Activity的事件分发函数
+     * 当菜单处于展开状态时，点击屏幕的其他地方将菜单栏关闭
+     */
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (ev != null && fab.isOpen() &&
+                !fab.isClickSubItem(ev)) {
+            fab.close()
+            return true
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        fab.detach()
     }
 }

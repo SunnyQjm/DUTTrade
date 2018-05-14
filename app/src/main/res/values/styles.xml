@@ -22,6 +22,8 @@
     </style>
 
     <style name="mine_item_style">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/mine_item_height</item>
         <item name="android:background">@drawable/ripple_bg_white</item>
