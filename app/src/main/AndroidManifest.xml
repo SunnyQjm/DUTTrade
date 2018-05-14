@@ -36,6 +36,7 @@
         <activity android:name=".activity.login.LoginActivity" />
         <activity android:name=".activity.register.RegisterActivity" />
         <activity android:name=".activity.addgoods.AddGoodsActivity" />
+        <activity android:name=".activity.image_scan.ImageScanActivity"></activity>
     </application>
 
 </manifest>

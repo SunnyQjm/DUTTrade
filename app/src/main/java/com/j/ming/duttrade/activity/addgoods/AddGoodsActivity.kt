@@ -3,12 +3,15 @@ package com.j.ming.duttrade.activity.addgoods
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import com.j.ming.dcim.extensions.jumpTo
 import com.j.ming.dcim.index.DCIMActivity
 import com.j.ming.dcim.manager.EasyDCIM
 import com.j.ming.dcim.manager.SelectPictureManager
 import com.j.ming.dcim.model.params.EasyBarParams
+import com.j.ming.dcim.model.params.IntentParam
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.MVPBaseActivity
+import com.j.ming.duttrade.activity.image_scan.ImageScanActivity
 import com.j.ming.duttrade.extensions.hideSoftKeyboard
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
@@ -41,6 +44,7 @@ class AddGoodsActivity : MVPBaseActivity<AddGoodsActivityPresenter>(), AddGoodsA
         addPictureAdapter.addData(ImageItem(type = ImageItem.Type.TYPE_ADD_TAG))
         addPictureAdapter.bindToRecyclerView(addPictureRecyclerView)
         addPictureAdapter.setOnItemClickListener { adapter, view, position ->
+            adapter as AddPictureAdapter
             if (position == adapter.data.size - 1) {      //最后一个是添加图片的按钮
                 EasyDCIM.with(this)
                         .setSaveState(true)
@@ -48,12 +52,19 @@ class AddGoodsActivity : MVPBaseActivity<AddGoodsActivityPresenter>(), AddGoodsA
                         .setEasyBarParam(EasyBarParams(barBgColor = R.color.colorPrimary))
                         .jumpForResult(0
                         )
+            } else {
+                jumpTo(ImageScanActivity::class.java, IntentParam()
+                        .add(ImageScanActivity.PARAM_URLS, adapter.data.map {
+                            imageItem -> imageItem.path
+                        }.toTypedArray())
+                        .add(ImageScanActivity.PARAM_POSITION, position))
             }
         }
 
-        addPictureAdapter.setOnItemChildClickListener { adapter, view, position ->      //移除已选中的图片
+        addPictureAdapter.setOnItemChildClickListener { adapter, view, position ->
+            //移除已选中的图片
             adapter as AddPictureAdapter
-            when(view.id){
+            when (view.id) {
                 R.id.imgDelete -> {
                     adapter.getItem(position)?.let {
                         SelectPictureManager.remove(it.path)
@@ -74,6 +85,7 @@ class AddGoodsActivity : MVPBaseActivity<AddGoodsActivityPresenter>(), AddGoodsA
                 }
                 addPictureAdapter.notifyDataSetChanged()
             }
+
         }
     }
 
