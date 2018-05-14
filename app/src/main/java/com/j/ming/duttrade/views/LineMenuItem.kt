@@ -172,6 +172,14 @@ class LineMenuItem @JvmOverloads constructor(context: Context, attrs: AttributeS
         return tv_value
     }
 
+    fun value(): String {
+        return getTv_value()?.text?.toString() ?: ""
+    }
+
+    fun title(): String {
+        return getTv_title()?.text?.toString() ?: ""
+    }
+
     override fun setLeftIcon(@DrawableRes res: Int) {
         this.post {
             leftResource = res

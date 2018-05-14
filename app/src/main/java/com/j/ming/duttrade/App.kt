@@ -5,6 +5,9 @@ import cn.bmob.v3.Bmob
 
 class App: Application(){
 
+    companion object {
+        const val APP_NAME = "DUTTrade"
+    }
     override fun onCreate() {
         super.onCreate()
         //第一：默认初始化

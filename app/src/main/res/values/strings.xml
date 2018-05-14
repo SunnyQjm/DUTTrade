@@ -26,6 +26,13 @@
     <string name="click_me_login">点我登录</string>
     <string name="good_name">名称</string>
     <string name="add_description">添加描述</string>
+    <string name="cancel">取消</string>
+    <string name="please_input_price">请输入价格</string>
+    <string name="please_input_remain_num">请输入剩余库存</string>
+    <string name="please_input_phone_number">请输入手机号</string>
+    <string name="please_input_qq_number">请输入QQ号</string>
+    <string name="please_input_wechat_count">请输入微信号</string>
+    <string name="already_publish">已发表</string>
 
     <style name="price">价格</style>
 </resources>

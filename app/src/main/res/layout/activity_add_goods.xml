@@ -24,7 +24,7 @@
             />
 
         <com.j.ming.duttrade.views.ClearAbleEditText
-            android:id="@+id/et_name"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/add_book_item_height1"
             android:layout_gravity="start"
@@ -42,7 +42,7 @@
         <include layout="@layout/divider_line"/>
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/et_content"
+            android:id="@+id/etDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -65,46 +65,51 @@
         <include layout="@layout/divider_line" />
 
         <com.j.ming.duttrade.views.LineMenuItem
+            android:id="@+id/addGoodsPrice"
             style="@style/mine_item_style"
             app:left_margin="@dimen/mine_item_margin_left"
             app:menu_title="价格"
-            app:menu_value="100.0"
+            app:menu_value="0"
             app:right_margin="@dimen/mine_item_right_margin" />
 
         <include layout="@layout/divider_line" />
 
         <com.j.ming.duttrade.views.LineMenuItem
+            android:id="@+id/addGoodsRemain"
             style="@style/mine_item_style"
             app:left_margin="@dimen/mine_item_margin_left"
             app:menu_title="库存"
-            app:menu_value="100.0"
+            app:menu_value="0"
             app:right_margin="@dimen/mine_item_right_margin" />
 
         <include layout="@layout/divider_line" />
 
         <com.j.ming.duttrade.views.LineMenuItem
+            android:id="@+id/addGoodsPhone"
             style="@style/mine_item_style"
             app:left_margin="@dimen/mine_item_margin_left"
             app:menu_title="手机号"
-            app:menu_value="100.0"
+            app:menu_value="无"
             app:right_margin="@dimen/mine_item_right_margin" />
 
         <include layout="@layout/divider_line" />
 
         <com.j.ming.duttrade.views.LineMenuItem
+            android:id="@+id/addGoodsQQ"
             style="@style/mine_item_style"
             app:left_margin="@dimen/mine_item_margin_left"
             app:menu_title="QQ"
-            app:menu_value="100.0"
+            app:menu_value="无"
             app:right_margin="@dimen/mine_item_right_margin" />
 
         <include layout="@layout/divider_line" />
 
         <com.j.ming.duttrade.views.LineMenuItem
+            android:id="@+id/addGoodsWeChat"
             style="@style/mine_item_style"
             app:left_margin="@dimen/mine_item_margin_left"
             app:menu_title="微信"
-            app:menu_value="100.0"
+            app:menu_value="无"
             app:right_margin="@dimen/mine_item_right_margin" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

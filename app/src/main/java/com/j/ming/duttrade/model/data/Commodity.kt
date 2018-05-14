@@ -10,9 +10,10 @@ class Commodity(val title: String,
                 val description: String,
                 val pictures: Array<BmobFile>?,
                 val originPrice: Float,
+                val remainNum: Int,             //库存
                 val discount: Float,
                 val qqNumber: String,
                 val phoneNumber: String,
-                val email: String,
+                val weChatCount: String,
                 val owner: UserInfo
                 ) : BmobObject()

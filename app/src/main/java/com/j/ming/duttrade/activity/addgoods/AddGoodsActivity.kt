@@ -3,6 +3,7 @@ package com.j.ming.duttrade.activity.addgoods
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.text.InputType
 import com.j.ming.dcim.extensions.jumpTo
 import com.j.ming.dcim.index.DCIMActivity
 import com.j.ming.dcim.manager.EasyDCIM
@@ -13,6 +14,11 @@ import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.MVPBaseActivity
 import com.j.ming.duttrade.activity.image_scan.ImageScanActivity
 import com.j.ming.duttrade.extensions.hideSoftKeyboard
+import com.j.ming.duttrade.extensions.showSoftKeyboard
+import com.j.ming.duttrade.extensions.toast
+import com.j.ming.duttrade.model.internet.publish.AddGoodsManager
+import com.j.ming.duttrade.utils.AccountValidatorUtil
+import com.j.ming.duttrade.views.EasyEditDialog
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.activity_add_goods.*
@@ -36,6 +42,9 @@ class AddGoodsActivity : MVPBaseActivity<AddGoodsActivityPresenter>(), AddGoodsA
         easyBar.init(titleRes = R.string.add_goods, rightRes = R.drawable.icon_sure,
                 leftRes = R.drawable.back, mode = EasyBar.Mode.ICON, leftCallback = {
             onBackPressed()
+        }, rightCallback = {
+            //添加商品
+            addGoods()
         })
 
         // init recyclerView
@@ -54,8 +63,8 @@ class AddGoodsActivity : MVPBaseActivity<AddGoodsActivityPresenter>(), AddGoodsA
                         )
             } else {
                 jumpTo(ImageScanActivity::class.java, IntentParam()
-                        .add(ImageScanActivity.PARAM_URLS, adapter.data.map {
-                            imageItem -> imageItem.path
+                        .add(ImageScanActivity.PARAM_URLS, adapter.data.map { imageItem ->
+                            imageItem.path
                         }.toTypedArray())
                         .add(ImageScanActivity.PARAM_POSITION, position))
             }
@@ -72,6 +81,79 @@ class AddGoodsActivity : MVPBaseActivity<AddGoodsActivityPresenter>(), AddGoodsA
                     adapter.remove(position)
                 }
             }
+        }
+
+
+
+        addGoodsPrice.setOnClickListener {
+            EasyEditDialog(this, rightCallback = {
+                addGoodsPrice.setValue(it)
+            })
+                    .inputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL)
+                    .title(R.string.please_input_price)
+                    .value(addGoodsPrice.value())
+                    .show()
+            showSoftKeyboard(addGoodsPrice)
+        }
+
+        addGoodsRemain.setOnClickListener {
+            EasyEditDialog(this, rightCallback = {
+                addGoodsRemain.setValue(it)
+            }).inputType(InputType.TYPE_CLASS_NUMBER)
+                    .title(R.string.please_input_remain_num)
+                    .value(addGoodsRemain.value())
+                    .show()
+        }
+
+        addGoodsPhone.setOnClickListener {
+            EasyEditDialog(this, rightCallback = {
+                if (AccountValidatorUtil.isMobile(it))
+                    addGoodsPhone.setValue(it)
+                else
+                    toast(R.string.please_input_correct_phone_numbet)
+            }).inputType(InputType.TYPE_CLASS_TEXT)
+                    .title(R.string.please_input_phone_number)
+                    .value(addGoodsPhone.value())
+                    .show()
+        }
+
+        addGoodsQQ.setOnClickListener {
+            EasyEditDialog(this, rightCallback = {
+                addGoodsQQ.setValue(it)
+            }).inputType(InputType.TYPE_CLASS_TEXT)
+                    .title(R.string.please_input_qq_number)
+                    .value(addGoodsQQ.value())
+                    .show()
+        }
+
+        addGoodsWeChat.setOnClickListener {
+            EasyEditDialog(this, rightCallback = {
+                addGoodsWeChat.setValue(it)
+            }).inputType(InputType.TYPE_CLASS_TEXT)
+                    .title(R.string.please_input_wechat_count)
+                    .value(addGoodsWeChat.value())
+                    .show()
+        }
+    }
+
+    /**
+     * 执行添加商品操作
+     */
+    private fun addGoods() {
+        if (etName.text.toString() == "" || etDescription.text.toString() == "")
+            toast(R.string.please_complete_info)
+        else {
+            AddGoodsManager.addGoods(this, AddGoodsManager.AddGoodsParams(
+                    name = etName.text.toString(),
+                    description = etDescription.text.toString(),
+                    pictures = SelectPictureManager.selectedPath(),
+                    price = addGoodsPrice.value().toFloat(),
+                    discount = 1f,
+                    remainNum = addGoodsRemain.value().toInt(),
+                    qqNumber = addGoodsQQ.value(),
+                    phoneNumber = addGoodsPhone.value(),
+                    wechatNumber = addGoodsWeChat.value()
+            ))
         }
     }
 
@@ -90,7 +172,7 @@ class AddGoodsActivity : MVPBaseActivity<AddGoodsActivityPresenter>(), AddGoodsA
     }
 
     override fun onBackPressed() {
-        hideSoftKeyboard(et_content)
+        hideSoftKeyboard(etDescription)
         super.onBackPressed()
     }
 }

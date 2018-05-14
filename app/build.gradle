@@ -51,33 +51,29 @@ dependencies {
     implementation 'cn.bmob.android:bmob-sdk:3.5.5'
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     implementation 'cn.bmob.android:http-legacy:1.0'
-
     //RxAndroid
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
-
     //easybar
     implementation 'com.github.SunnyQjm:EasyBar:v1.1.0'
     implementation 'com.github.SunnyQjm:ArcMenu:v1.1.1'
-
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
-
     //BRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
-
     //DCIM select
     implementation 'com.github.SunnyQjm:DCIMDemo:v1.1.0'
-
     //ScrollPhotoView
     implementation 'com.github.SunnyQjm:ScrollPhotoView:1.1.0'
-
+    //Luban
+    implementation 'top.zibin:Luban:1.1.4'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "com.android.support:design:$support_version"
     implementation "com.android.support:recyclerview-v7:$support_version"
+    implementation "com.android.support:exifinterface:$support_version"
 }
 repositories {
     mavenCentral()

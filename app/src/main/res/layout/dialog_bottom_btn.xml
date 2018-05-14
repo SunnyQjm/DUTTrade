@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:clickable="true"
+        android:id="@+id/tvCancel"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="@string/cancel"
+        android:textSize="17sp"
+        android:textColor="@color/application_theme_color"
+        android:focusable="true" />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#DFDFDF"/>
+    <TextView
+        android:clickable="true"
+        android:id="@+id/tvSure"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="@string/sure"
+        android:textSize="17sp"
+        android:textColor="@color/application_theme_color"
+        android:focusable="true" />
+
+</LinearLayout>

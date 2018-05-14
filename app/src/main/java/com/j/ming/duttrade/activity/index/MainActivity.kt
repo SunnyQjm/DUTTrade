@@ -4,8 +4,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import cn.bmob.v3.BmobQuery
+import cn.bmob.v3.BmobUser
+import cn.bmob.v3.exception.BmobException
+import cn.bmob.v3.listener.FindListener
 import com.j.ming.arcmenu2.ArcMenu
 import com.j.ming.arcmenu2.FloatingButton
 import com.j.ming.duttrade.R
@@ -17,10 +22,13 @@ import com.j.ming.duttrade.activity.index.mine.MineFragment
 import com.j.ming.duttrade.extensions.jumpTo
 import com.j.ming.duttrade.extensions.scaleXY
 import com.j.ming.duttrade.extensions.toast
+import com.j.ming.duttrade.model.data.Commodity
+import com.j.ming.duttrade.model.data.UserInfo
 import com.j.ming.duttrade.model.manager.DutTradeUserManager
 import com.j.ming.duttrade.utils.DensityUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_bottom.*
+
 
 class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContract.View, DUTTradeFragment.OnFragmentInteractionListener {
     override fun onFragmentInteraction(uri: Uri?) {
@@ -127,30 +135,18 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
                             toast(R.string.please_login_first)
                     }
                     1 -> {  //test add commodity
-//                        BmobUser.getCurrentUser(UserInfo::class.java)
-//                                ?.let { user->
-//                                    val commodity = Commodity("test title", "It's really a good thing", null,
-//                                            100f, 1f, "1250422644", "18340857280", "qjm253@gmail.com", user)
-//                                    commodity.save(object : SaveListener<String>() {
-//                                        override fun done(p0: String?, p1: BmobException?) {
-//                                            if (p1 == null) {
-//                                                Log.i("bmob", "保存成功")
-//                                                val comment = Comment("lalkla", user, commodity)
-//                                                comment.save(object : SaveListener<String>(){
-//                                                    override fun done(p0: String?, p1: BmobException?) {
-//                                                        if(p1 == null)
-//                                                            Log.i("bmob", "评论保存成功")
-//                                                        else
-//                                                            Log.i("bmob", "评论保存失败：" + p1.message)
-//                                                    }
-//
-//                                                })
-//                                            } else {
-//                                                Log.i("bmob", "保存失败：" + p1.message)
-//                                            }
-//                                        }
-//                                    })
-//                                }
+                        val query = BmobQuery<Commodity>()
+                        query.addWhereEqualTo("owner", BmobUser.getCurrentUser(UserInfo::class.java))
+                        query.findObjects(object : FindListener<Commodity>() {
+                            override fun done(result: List<Commodity>, e: BmobException?) {
+                                if (e == null) {
+                                    toast("查询成功：共" + result.size + "条数据。")
+                                } else {
+                                    Log.i("bmob", "失败：" + e.message + "," + e.errorCode)
+                                }
+                            }
+                        })
+
                     }
                     2 -> {      //test add comment
 
