@@ -6,10 +6,5 @@
 
     <include layout="@layout/bar_item"/>
 
-    <TextView
-        android:text="fragment market"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+    <include layout="@layout/base_recycler_view_layout"/>
 </LinearLayout>

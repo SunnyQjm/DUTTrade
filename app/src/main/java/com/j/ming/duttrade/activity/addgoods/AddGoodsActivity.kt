@@ -11,7 +11,7 @@ import com.j.ming.dcim.manager.SelectPictureManager
 import com.j.ming.dcim.model.params.EasyBarParams
 import com.j.ming.dcim.model.params.IntentParam
 import com.j.ming.duttrade.R
-import com.j.ming.duttrade.activity.base.MVPBaseActivity
+import com.j.ming.duttrade.activity.base.activity.MVPBaseActivity
 import com.j.ming.duttrade.activity.image_scan.ImageScanActivity
 import com.j.ming.duttrade.extensions.hideSoftKeyboard
 import com.j.ming.duttrade.extensions.showSoftKeyboard
@@ -154,6 +154,7 @@ class AddGoodsActivity : MVPBaseActivity<AddGoodsActivityPresenter>(), AddGoodsA
                     phoneNumber = addGoodsPhone.value(),
                     wechatNumber = addGoodsWeChat.value()
             ))
+            onBackPressed()
         }
     }
 

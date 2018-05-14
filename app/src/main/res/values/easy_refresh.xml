@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading_">正在加载</string>
+    <string name="pull_refresh">下拉刷新</string>
+    <string name="release_refresh">释放刷新</string>
+    <string name="pull_down_load">下拉加载</string>
+    <string name="loading">正在加载中…</string>
+    <string name="refreshing">正在刷新</string>
+    <string name="refresh_pre">下拉刷新</string>
+    <string name="refresh_half">释放刷新</string>
+</resources>

@@ -1,7 +1,8 @@
-package com.j.ming.duttrade.activity.base
+package com.j.ming.duttrade.activity.base.activity
 
 import android.os.Bundle
 import android.support.annotation.CallSuper
+import com.j.ming.duttrade.activity.base.DUTTradeActivity
 import com.j.ming.duttrade.activity.base.mvp.BasePresenter
 
 abstract class MVPBaseActivity<P : BasePresenter<*, *>> : DUTTradeActivity() {

@@ -3,7 +3,7 @@ package com.j.ming.duttrade.activity.register
 import android.os.Bundle
 import android.view.View
 import com.j.ming.duttrade.R
-import com.j.ming.duttrade.activity.base.MVPBaseActivity
+import com.j.ming.duttrade.activity.base.activity.MVPBaseActivity
 import com.j.ming.duttrade.activity.index.MainActivity
 import com.j.ming.duttrade.extensions.hideSoftKeyboard
 import com.j.ming.duttrade.extensions.jumpTo

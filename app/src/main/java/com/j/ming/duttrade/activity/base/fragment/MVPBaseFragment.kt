@@ -1,6 +1,7 @@
-package com.j.ming.duttrade.activity.base
+package com.j.ming.duttrade.activity.base.fragment
 
 import android.os.Bundle
+import com.j.ming.duttrade.activity.base.DUTTradeFragment
 import com.j.ming.duttrade.activity.base.mvp.BasePresenter
 
 abstract class MVPBaseFragment<P: BasePresenter<*, *>>: DUTTradeFragment(){

@@ -3,7 +3,7 @@ package com.j.ming.duttrade.activity.index.mine
 import android.os.Bundle
 import cn.bmob.v3.BmobUser
 import com.j.ming.duttrade.R
-import com.j.ming.duttrade.activity.base.MVPBaseFragment
+import com.j.ming.duttrade.activity.base.fragment.MVPBaseFragment
 import com.j.ming.duttrade.activity.login.LoginActivity
 import com.j.ming.duttrade.extensions.jumpTo
 import com.j.ming.easybar2.EasyBar
@@ -42,6 +42,7 @@ class MineFragment: MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContra
                 jumpTo(LoginActivity::class.java)
             }
         }
+
     }
 
     override fun initialLoadData() {

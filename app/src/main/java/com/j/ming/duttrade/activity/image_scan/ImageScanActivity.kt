@@ -8,7 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.j.ming.duttrade.R
-import com.j.ming.duttrade.activity.base.MVPBaseActivity
+import com.j.ming.duttrade.activity.base.activity.MVPBaseActivity
 import com.sunny.scrollphotoview.ScrollPhotoView
 import kotlinx.android.synthetic.main.activity_image_scan.*
 

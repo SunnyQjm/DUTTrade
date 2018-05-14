@@ -16,7 +16,7 @@ import com.j.ming.arcmenu2.FloatingButton
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.addgoods.AddGoodsActivity
 import com.j.ming.duttrade.activity.base.DUTTradeFragment
-import com.j.ming.duttrade.activity.base.MVPBaseActivity
+import com.j.ming.duttrade.activity.base.activity.MVPBaseActivity
 import com.j.ming.duttrade.activity.index.market.MarketFragment
 import com.j.ming.duttrade.activity.index.mine.MineFragment
 import com.j.ming.duttrade.extensions.jumpTo

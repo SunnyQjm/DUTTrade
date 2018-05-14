@@ -13,6 +13,7 @@ import com.j.ming.duttrade.R
 import com.j.ming.duttrade.extensions.toast
 import com.j.ming.duttrade.model.data.Commodity
 import com.j.ming.duttrade.model.data.UserInfo
+import com.j.ming.duttrade.utils.FileUtils
 import com.j.ming.duttrade.utils.notification.MyNotificationUtil
 import com.j.ming.duttrade.utils.notification.PublishNotificationFactoryImpl
 import com.j.ming.duttrade.utils.notification.PublishNotificationInfo
@@ -48,15 +49,21 @@ class AddGoodsService : Service() {
             val phoneNumber = getStringExtra(PARAM_PHONE_NUMBER)
 
             val notifyId = System.currentTimeMillis().toInt()
+            PublishNotificationFactoryImpl()
+                    .build(this@AddGoodsService, PublishNotificationInfo(0,
+                            0, pictures.size, 0))
+                    ?.let {
+                        MyNotificationUtil.newInstance(this@AddGoodsService)
+                                .notify(it, notifyId)
+                    }
             Observable.just(Arrays.asList(*pictures))
                     .subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
                     .map<MutableList<File>> {
-                        Log.e("TAG", "do map")
                         try {
                             //首先对要上传的图片进行压缩
                             Luban.with(this@AddGoodsService)
-                                    .setTargetDir("")
+                                    .setTargetDir(FileUtils.getCachePath())
                                     .ignoreBy(200)
                                     .load(it)
                                     .get()
@@ -65,52 +72,70 @@ class AddGoodsService : Service() {
                             null
                         }
                     }.subscribe({
-                        Log.e("TAG", "onNext")
-                        BmobFile.uploadBatch(it.map { it.path }.toTypedArray(), object : UploadBatchListener {
-                            override fun onSuccess(files: MutableList<BmobFile>?, urls: MutableList<String>?) {
-                                urls ?: return
-                                files ?: return
-                                println("---------上传成功---------")
-                                //1、files-上传完成后的BmobFile集合，是为了方便大家对其上传后的数据进行操作，例如你可以将该文件保存到表中
-                                //2、urls-上传文件的完整url地址
-                                if (urls.size == it.size) { //如果数量相等，则代表文件全部上传完成
-                                    //上传完成后关掉通知
-                                    MyNotificationUtil.newInstance(this@AddGoodsService)
-                                            .cancel(notifyId)
-                                    //do something
-                                    Commodity(name, description, files.toTypedArray(), price, remainNum,
-                                            discount, qqNumber, phoneNumber, wechatNumber,
-                                            BmobUser.getCurrentUser(UserInfo::class.java))
-                                            .save(object : SaveListener<String>() {
-                                                override fun done(p0: String?, p1: BmobException?) {
-                                                    if (p1 == null)
-                                                        this@AddGoodsService.toast(R.string.already_publish)
-                                                    else
-                                                        p1.printStackTrace()
+                        if(it.size > 0) {
+                            BmobFile.uploadBatch(it.map { it.path }.toTypedArray(), object : UploadBatchListener {
+                                override fun onSuccess(files: MutableList<BmobFile>?, urls: MutableList<String>?) {
+                                    urls ?: return
+                                    files ?: return
+                                    println("---------上传成功---------")
+                                    //1、files-上传完成后的BmobFile集合，是为了方便大家对其上传后的数据进行操作，例如你可以将该文件保存到表中
+                                    //2、urls-上传文件的完整url地址
+                                    if (urls.size == it.size) { //如果数量相等，则代表文件全部上传完成
+                                        //上传完成后关掉通知
+                                        MyNotificationUtil.newInstance(this@AddGoodsService)
+                                                .cancel(notifyId)
+                                        //do something
+                                        Commodity(name, description, files.toTypedArray(), price, remainNum,
+                                                discount, qqNumber, phoneNumber, wechatNumber,
+                                                BmobUser.getCurrentUser(UserInfo::class.java))
+                                                .save(object : SaveListener<String>() {
+                                                    override fun done(p0: String?, p1: BmobException?) {
+                                                        if (p1 == null)
+                                                            this@AddGoodsService.toast(R.string.already_publish)
+                                                        else
+                                                            p1.printStackTrace()
+                                                    }
+                                                })
+                                        //上传成功后删除temp文件
+                                        File(FileUtils.getCachePath())
+                                                .listFiles().forEach {
+                                                    it.deleteOnExit()
                                                 }
-                                            })
+                                    }
                                 }
-                            }
 
-                            //1、curIndex--表示当前第几个文件正在上传
-                            //2、curPercent--表示当前上传文件的进度值（百分比）
-                            //3、total--表示总的上传文件数
-                            //4、totalPercent--表示总的上传进度（百分比）
-                            override fun onProgress(curIndex: Int, curPercent: Int, total: Int, totalPercent: Int) {
-                                PublishNotificationFactoryImpl()
-                                        .build(this@AddGoodsService, PublishNotificationInfo(curIndex, curPercent, total, totalPercent))
-                                        ?.let {
-                                            MyNotificationUtil.newInstance(this@AddGoodsService)
-                                                    .notify(it, notifyId)
+                                //1、curIndex--表示当前第几个文件正在上传
+                                //2、curPercent--表示当前上传文件的进度值（百分比）
+                                //3、total--表示总的上传文件数
+                                //4、totalPercent--表示总的上传进度（百分比）
+                                override fun onProgress(curIndex: Int, curPercent: Int, total: Int, totalPercent: Int) {
+                                    PublishNotificationFactoryImpl()
+                                            .build(this@AddGoodsService, PublishNotificationInfo(curIndex, curPercent, total, totalPercent))
+                                            ?.let {
+                                                MyNotificationUtil.newInstance(this@AddGoodsService)
+                                                        .notify(it, notifyId)
+                                            }
+                                }
+
+                                override fun onError(p0: Int, p1: String?) {
+                                    println("----------------上传出错--------------")
+                                    println(p1 ?: "")
+                                }
+
+                            })
+                        } else {
+                            Commodity(name, description, null, price, remainNum,
+                                    discount, qqNumber, phoneNumber, wechatNumber,
+                                    BmobUser.getCurrentUser(UserInfo::class.java))
+                                    .save(object : SaveListener<String>() {
+                                        override fun done(p0: String?, p1: BmobException?) {
+                                            if (p1 == null)
+                                                this@AddGoodsService.toast(R.string.already_publish)
+                                            else
+                                                p1.printStackTrace()
                                         }
-                            }
-
-                            override fun onError(p0: Int, p1: String?) {
-                                println("----------------上传出错--------------")
-                                println(p1 ?: "")
-                            }
-
-                        })
+                                    })
+                        }
                     }, {
                         it.printStackTrace()
                     }, {
