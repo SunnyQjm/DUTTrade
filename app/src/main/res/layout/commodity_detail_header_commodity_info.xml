@@ -68,16 +68,16 @@
         android:textStyle="bold"
         />
 
+    <!--<TextView-->
+        <!--android:id="@+id/tvRemainNum"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:text="库存：20"-->
+        <!--/>-->
     <TextView
-        android:id="@+id/tvRemainNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="16dp"
-        android:text="库存：20"
-        />
-    <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvDescription"
         android:layout_marginTop="5dp"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
@@ -95,6 +95,38 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
         />
+    <TextView
+        android:id="@+id/tvQQ"
+        android:text="QQ: 1250422687"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/tvWechat"
+        android:text="微信：123"
+        android:textIsSelectable="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:text="手机号：18340857245"
+        android:autoLink="phone"
+        android:textIsSelectable="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

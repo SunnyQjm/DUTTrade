@@ -1,5 +1,6 @@
 package com.j.ming.duttrade.activity.index.market
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.StaggeredGridLayoutManager
 import cn.bmob.v3.BmobQuery
@@ -8,7 +9,7 @@ import cn.bmob.v3.listener.FindListener
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.fragment.BaseRecyclerViewFragment
 import com.j.ming.duttrade.activity.commodity_detail.CommodityDetailActivity
-import com.j.ming.duttrade.extensions.jumpTo
+import com.j.ming.duttrade.extensions.jumpForResult
 import com.j.ming.duttrade.extensions.toast
 import com.j.ming.duttrade.model.data.Commodity
 import com.j.ming.duttrade.model.event.LoadFinishEvent
@@ -57,6 +58,9 @@ class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), Mark
 
     companion object {
         const val PAGE_SIZE = 10
+
+        const val REQUEST_CODE_DETAIL = 0
+
         fun newInstance(): MarketFragment {
             val args = Bundle()
             val fragment = MarketFragment()
@@ -81,9 +85,11 @@ class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), Mark
             recyclerView.layoutManager = layoutManager
             bindToRecyclerView(recyclerView)
             setOnItemClickListener { adapter, view, position ->
-                jumpTo(CommodityDetailActivity::class.java, IntentParam()
+                jumpForResult(CommodityDetailActivity::class.java, REQUEST_CODE_DETAIL, IntentParam()
                         .add(CommodityDetailActivity.PARAM_URLS, (this as CommodityAdapter).getItem(position)
-                                ?.pictures?.map { it.fileUrl }?.toTypedArray()))
+                                ?.pictures?.map { it.fileUrl }?.toTypedArray())
+                        .add(CommodityDetailActivity.PARAM_POSITION, position)
+                )
                 val commodity = (this as CommodityAdapter).getItem(position)
                 EventBus.getDefault()
                         .postSticky(commodity)
@@ -91,5 +97,19 @@ class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), Mark
         }
 
         initialLoadData()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_CODE_DETAIL -> {
+                data?.run {
+                    getIntExtra(CommodityDetailActivity.RESULT_POSITION, -1).let {
+                        if(it > 0)
+                            adapter?.remove(it)
+                    }
+                }
+            }
+        }
     }
 }

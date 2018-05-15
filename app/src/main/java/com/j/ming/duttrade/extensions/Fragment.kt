@@ -1,5 +1,6 @@
 package com.j.ming.duttrade.extensions
 
+import android.content.Intent
 import android.support.v4.app.Fragment
 import com.j.ming.duttrade.model.params.IntentParam
 
@@ -9,5 +10,7 @@ fun Fragment.jumpTo(cls: Class<*>, intentParam: IntentParam? = null, vararg flag
 }
 
 fun Fragment.jumpForResult(cls: Class<*>, requestCode: Int, intentParam: IntentParam? = null) {
-    activity?.jumpForResult(cls, requestCode, intentParam)
+    val intent = Intent(activity, cls)
+    intentParam?.applyParam(intent)
+    startActivityForResult(intent, requestCode)
 }

@@ -38,4 +38,10 @@
     <string name="description">简介</string>
     <string name="master">主人</string>
     <string name="my_commodity">我的商品</string>
+    <string name="wechat">微信</string>
+    <string name="phone_number">手机号</string>
+    <string name="reserve">预定</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="delete_commodity_fail">删除商品失败，请检查网络连接</string>
 </resources>
