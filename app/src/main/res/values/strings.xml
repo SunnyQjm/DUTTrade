@@ -31,5 +31,10 @@
     <string name="already_publish">已发表</string>
     <string name="server_error">服务器开小差了，请稍后重试</string>
     <string name="all_data_load_finish">没有更多数据了</string>
-
+    <string name="commodity_deatil">宝贝详情</string>
+    <string name="commodity_info">宝贝信息</string>
+    <string name="comment">评论</string>
+    <string name="stock">库存</string>
+    <string name="description">简介</string>
+    <string name="master">主人</string>
 </resources>

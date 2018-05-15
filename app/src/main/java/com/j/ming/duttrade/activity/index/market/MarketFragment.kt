@@ -7,21 +7,25 @@ import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.fragment.BaseRecyclerViewFragment
+import com.j.ming.duttrade.activity.commodity_detail.CommodityDetailActivity
+import com.j.ming.duttrade.extensions.jumpTo
 import com.j.ming.duttrade.extensions.toast
 import com.j.ming.duttrade.model.data.Commodity
 import com.j.ming.duttrade.model.event.LoadFinishEvent
 import com.j.ming.duttrade.model.event.RefreshEvent
+import com.j.ming.duttrade.model.params.IntentParam
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.bar_item.*
 import kotlinx.android.synthetic.main.base_recycler_view_layout.*
+import org.greenrobot.eventbus.EventBus
 
 
 class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), MarketFragmentContract.View {
     override fun loadData(isRefresh: Boolean) {
         val query = BmobQuery<Commodity>()
         query.setLimit(PAGE_SIZE)
-        page = if(isRefresh)
+        page = if (isRefresh)
             1
         else
             page + 1
@@ -31,7 +35,7 @@ class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), Mark
                 adapter ?: return
                 if (p1 == null)
                     p0?.let { commdities ->
-                        if(commdities.size == 0) {
+                        if (commdities.size == 0) {
                             loadFinish(LoadFinishEvent())
                             context?.toast(R.string.all_data_load_finish)
                         }
@@ -76,6 +80,14 @@ class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), Mark
             layoutManager.gapStrategy + StaggeredGridLayoutManager.GAP_HANDLING_NONE
             recyclerView.layoutManager = layoutManager
             bindToRecyclerView(recyclerView)
+            setOnItemClickListener { adapter, view, position ->
+                jumpTo(CommodityDetailActivity::class.java, IntentParam()
+                        .add(CommodityDetailActivity.PARAM_URLS, (this as CommodityAdapter).getItem(position)
+                                ?.pictures?.map { it.fileUrl }?.toTypedArray()))
+                val commodity = (this as CommodityAdapter).getItem(position)
+                EventBus.getDefault()
+                        .postSticky(commodity)
+            }
         }
 
         initialLoadData()

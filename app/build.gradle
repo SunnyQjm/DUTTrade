@@ -68,6 +68,10 @@ dependencies {
     implementation 'com.github.SunnyQjm:ScrollPhotoView:1.1.0'
     //Luban
     implementation 'top.zibin:Luban:1.1.4'
+
+    //轮播图控件
+    implementation 'com.youth.banner:banner:1.4.10'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"

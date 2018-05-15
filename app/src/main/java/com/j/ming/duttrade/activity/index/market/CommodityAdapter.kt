@@ -1,6 +1,7 @@
 package com.j.ming.duttrade.activity.index.market
 
 import android.widget.ImageView
+import com.bumptech.glide.request.target.ViewTarget
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.j.ming.dcim.GlideApp
@@ -22,7 +23,13 @@ class CommodityAdapter(mList: MutableList<Commodity>)
 
         helper.setText(R.id.tvName, item.title)
                 .getView<ImageView>(R.id.imgPicture)
-                .loadCommodityPicture(item.pictures?.first()?.fileUrl ?: "")
+//                .loadCommodityPicture(item.pictures?.first()?.fileUrl ?: "")
+        val img = helper.getView<ImageView>(R.id.imgPicture)
+        GlideApp.with(mContext)
+                .load(item.pictures?.first()?.fileUrl ?: "")
+                .error(R.drawable.none)
+                .override(img.width, ViewTarget.SIZE_ORIGINAL)
+                .into(img)
     }
 
 }
