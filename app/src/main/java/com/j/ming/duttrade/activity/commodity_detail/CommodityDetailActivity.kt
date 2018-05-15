@@ -79,7 +79,7 @@ class CommodityDetailActivity : MVPBaseActivity<CommodityDetailActivityPresenter
         tvName.text = commodity.title
         tvPrice.text = String.format("%s %.2f", "¥", commodity.originPrice)
         tvRemainNum.text = String.format("%s: %d", getString(R.string.stock), commodity.remainNum)
-        tvDescription.text = String.format("%s: %s", getString(R.string.description), commodity.description)
+        tvName.text = String.format("%s: %s", getString(R.string.description), commodity.description)
 
         //查询一下用户信息
         BmobQuery<UserInfo>()

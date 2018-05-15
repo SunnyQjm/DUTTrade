@@ -87,6 +87,7 @@
         <include layout="@layout/divider_line" />
 
         <com.j.ming.duttrade.views.LineMenuItem
+            android:id="@+id/lmiMyCommodity"
             style="@style/mine_item_style"
             app:is_left_icon_visible="true"
             app:left_margin="@dimen/mine_item_margin_left"

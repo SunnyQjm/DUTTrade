@@ -5,6 +5,7 @@ import cn.bmob.v3.BmobUser
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.fragment.MVPBaseFragment
 import com.j.ming.duttrade.activity.login.LoginActivity
+import com.j.ming.duttrade.activity.my_commodity.MyCommodityActivity
 import com.j.ming.duttrade.extensions.jumpTo
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
@@ -43,6 +44,11 @@ class MineFragment: MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContra
             }
         }
 
+        lmiMyCommodity.setOnClickListener {
+            if(BmobUser.getCurrentUser() != null){
+                jumpTo(MyCommodityActivity::class.java)
+            }
+        }
     }
 
     override fun initialLoadData() {
