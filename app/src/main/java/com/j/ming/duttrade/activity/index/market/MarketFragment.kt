@@ -9,17 +9,15 @@ import cn.bmob.v3.listener.FindListener
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.fragment.BaseRecyclerViewFragment
 import com.j.ming.duttrade.activity.commodity_detail.CommodityDetailActivity
-import com.j.ming.duttrade.extensions.jumpForResult
+import com.j.ming.duttrade.extensions.jumpToCommodityDetail
 import com.j.ming.duttrade.extensions.toast
 import com.j.ming.duttrade.model.data.Commodity
 import com.j.ming.duttrade.model.event.LoadFinishEvent
 import com.j.ming.duttrade.model.event.RefreshEvent
-import com.j.ming.duttrade.model.params.IntentParam
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.bar_item.*
 import kotlinx.android.synthetic.main.base_recycler_view_layout.*
-import org.greenrobot.eventbus.EventBus
 
 
 class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), MarketFragmentContract.View {
@@ -85,17 +83,9 @@ class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), Mark
             recyclerView.layoutManager = layoutManager
             bindToRecyclerView(recyclerView)
             setOnItemClickListener { adapter, view, position ->
-                jumpForResult(CommodityDetailActivity::class.java, REQUEST_CODE_DETAIL, IntentParam()
-                        .add(CommodityDetailActivity.PARAM_URLS, (this as CommodityAdapter).getItem(position)
-                                ?.pictures?.map { it.fileUrl }?.toTypedArray())
-                        .add(CommodityDetailActivity.PARAM_POSITION, position)
-                )
-                val commodity = (this as CommodityAdapter).getItem(position)
-                EventBus.getDefault()
-                        .postSticky(commodity)
+                jumpToCommodityDetail((adapter as CommodityAdapter).getItem(position)!!, position)
             }
         }
-
         initialLoadData()
     }
 

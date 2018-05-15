@@ -8,6 +8,7 @@ import com.j.ming.dcim.views.RecyclerViewDividerItem
 import com.j.ming.duttrade.R
 import com.j.ming.duttrade.activity.base.activity.BaseRecyclerViewActivity
 import com.j.ming.duttrade.activity.index.market.MarketFragment
+import com.j.ming.duttrade.extensions.jumpToCommodityDetail
 import com.j.ming.duttrade.extensions.toast
 import com.j.ming.duttrade.model.data.Commodity
 import com.j.ming.duttrade.model.data.UserInfo
@@ -64,6 +65,10 @@ class MyCommodityActivity : BaseRecyclerViewActivity<MyCommodityActivityPresente
         adapter?.run {
             recyclerView.addItemDecoration(RecyclerViewDividerItem(this@MyCommodityActivity))
             bindToRecyclerView(recyclerView)
+            setOnItemClickListener { adapter, view, position ->
+                //点击切换到商品详情页
+                jumpToCommodityDetail((adapter as CommodityAdapter).getItem(position)!!, position)
+            }
         }
 
         initialLoadData()
