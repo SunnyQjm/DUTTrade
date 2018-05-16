@@ -23,7 +23,6 @@ class CommodityAdapter(mList: MutableList<Commodity>)
 
         helper.setText(R.id.tvName, item.title)
                 .getView<ImageView>(R.id.imgPicture)
-//                .loadCommodityPicture(item.pictures?.first()?.fileUrl ?: "")
         val img = helper.getView<ImageView>(R.id.imgPicture)
         GlideApp.with(mContext)
                 .load(item.pictures?.first()?.fileUrl ?: "")

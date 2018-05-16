@@ -4,13 +4,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import cn.bmob.v3.BmobQuery
-import cn.bmob.v3.BmobUser
-import cn.bmob.v3.exception.BmobException
-import cn.bmob.v3.listener.FindListener
 import com.j.ming.arcmenu2.ArcMenu
 import com.j.ming.arcmenu2.FloatingButton
 import com.j.ming.duttrade.R
@@ -22,8 +17,6 @@ import com.j.ming.duttrade.activity.index.mine.MineFragment
 import com.j.ming.duttrade.extensions.jumpTo
 import com.j.ming.duttrade.extensions.scaleXY
 import com.j.ming.duttrade.extensions.toast
-import com.j.ming.duttrade.model.data.Commodity
-import com.j.ming.duttrade.model.data.UserInfo
 import com.j.ming.duttrade.model.manager.DutTradeUserManager
 import com.j.ming.duttrade.utils.DensityUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -117,13 +110,13 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
         //四个参数分别是子菜单的大小，内边距，背景资源，和图标资源
         fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
                 resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
-                contentRes = R.mipmap.ic_launcher)
+                contentRes = R.drawable.create_new)
         fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
                 resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
-                contentRes = R.mipmap.ic_launcher)
+                contentRes = R.drawable.find)
         fab.addItem(resources.getDimensionPixelSize(R.dimen.fab_menu_size),
                 resources.getDimensionPixelSize(R.dimen.fab_menu_content_margin),
-                contentRes = R.mipmap.ic_launcher)
+                contentRes = R.drawable.hot)
         fab.onArcMenuItemClickListener = object : ArcMenu.OnArcMenuItemClickListener {
             override fun onClick(position: Int, v: View?) {
                 fab.close()
@@ -135,21 +128,10 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
                             toast(R.string.please_login_first)
                     }
                     1 -> {  //test add commodity
-                        val query = BmobQuery<Commodity>()
-                        query.addWhereEqualTo("owner", BmobUser.getCurrentUser(UserInfo::class.java))
-                        query.findObjects(object : FindListener<Commodity>() {
-                            override fun done(result: List<Commodity>, e: BmobException?) {
-                                if (e == null) {
-                                    toast("查询成功：共" + result.size + "条数据。")
-                                } else {
-                                    Log.i("bmob", "失败：" + e.message + "," + e.errorCode)
-                                }
-                            }
-                        })
-
+                        toast(R.string.on_building)
                     }
                     2 -> {      //test add comment
-
+                        toast(R.string.on_building)
                     }
                 }
             }

@@ -44,4 +44,6 @@
     <string name="delete">删除</string>
     <string name="edit">编辑</string>
     <string name="delete_commodity_fail">删除商品失败，请检查网络连接</string>
+    <string name="cancel_reserve">取消预定</string>
+    <string name="on_building">正在建设中</string>
 </resources>

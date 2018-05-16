@@ -77,9 +77,7 @@ class MarketFragment : BaseRecyclerViewFragment<MarketFragmentPresenter>(), Mark
         easyBar.init(titleRes = R.string.trade_center, mode = EasyBar.Mode.NONE)
         adapter = CommodityAdapter(mutableListOf())
         adapter?.run {
-            recyclerView.setHasFixedSize(false)
             val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-            layoutManager.gapStrategy + StaggeredGridLayoutManager.GAP_HANDLING_NONE
             recyclerView.layoutManager = layoutManager
             bindToRecyclerView(recyclerView)
             setOnItemClickListener { adapter, view, position ->
