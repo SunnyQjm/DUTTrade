@@ -15,7 +15,7 @@ class CommodityAdapter(mList: MutableList<Commodity>)
         helper ?: return
         item ?: return
 
-        helper.setText(R.id.tvName, item.title)
+        helper.setText(R.id.tvName, item.name)
                 .setText(R.id.tvName, item.description)
                 .setText(R.id.tvTime, TimeUtils.returnTime(TimeUtils.returnTimeStamps_DateTiem(item.createdAt)))
                 .getView<ImageView>(R.id.imgPicture)

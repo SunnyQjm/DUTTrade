@@ -8,7 +8,7 @@
         <!--android:id="@+id/easyBar"-->
         <!--app:title_color="@color/white"-->
         <!--app:title_size="18sp"-->
-        <!--app:title="交易平台"-->
+        <!--app:name="交易平台"-->
         <!--app:left_icon="@string/back"-->
         <!--app:left_text="@string/back"-->
         <!--app:right_text="@string/sure"-->

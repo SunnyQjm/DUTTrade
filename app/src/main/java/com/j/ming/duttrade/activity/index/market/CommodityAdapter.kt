@@ -21,7 +21,7 @@ class CommodityAdapter(mList: MutableList<Commodity>)
         helper ?: return
         item ?: return
 
-        helper.setText(R.id.tvName, item.title)
+        helper.setText(R.id.tvName, item.name)
                 .getView<ImageView>(R.id.imgPicture)
         val img = helper.getView<ImageView>(R.id.imgPicture)
         GlideApp.with(mContext)

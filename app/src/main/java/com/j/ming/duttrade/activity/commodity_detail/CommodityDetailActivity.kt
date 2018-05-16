@@ -129,7 +129,7 @@ class CommodityDetailActivity : MVPBaseActivity<CommodityDetailActivityPresenter
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onReceiveCommodityInfo(commodity: Commodity) {
         this.commodity = commodity
-        tvName.text = commodity.title
+        tvName.text = commodity.name
         tvPrice.text = String.format("%s %.2f", "¥", commodity.originPrice)
         tvDescription.text = String.format("%s: %s", getString(R.string.description), commodity.description)
         tvQQ.text = String.format("%s: %s", "QQ", commodity.qqNumber)
